@@ -30,16 +30,16 @@ private[std] trait SecureRandomCompanionPlatform {
 
     override def nextBytes(bytes: Array[Byte]): Unit = {
       val len = bytes.length
-      val buffer = stackalloc[Byte](256)
+      val buffer = stackalloc[Byte](256.toUSize)
       var i = 0
       while (i < len) {
         val n = Math.min(256, len - i)
-        if (sysrandom.getentropy(buffer, n.toULong) < 0)
+        if (sysrandom.getentropy(buffer, n.toUSize) < 0)
           throw new RuntimeException(s"getentropy: ${errno.errno}")
 
         var j = 0L
         while (j < n) {
-          bytes(i) = buffer(j)
+          bytes(i) = buffer(j.toUSize)
           i += 1
           j += 1
         }

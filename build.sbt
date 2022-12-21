@@ -42,6 +42,7 @@ ThisBuild / git.gitUncommittedChanges := {
 }
 
 ThisBuild / tlBaseVersion := "3.4"
+ThisBuild / version := "3.4.2"
 ThisBuild / tlUntaggedAreSnapshots := false
 
 ThisBuild / organization := "org.typelevel"
@@ -375,7 +376,7 @@ lazy val kernel = crossProject(JSPlatform, JVMPlatform, NativePlatform)
     name := "cats-effect-kernel",
     libraryDependencies ++= Seq(
       "org.typelevel" %%% "cats-core" % CatsVersion,
-      "org.specs2" %%% "specs2-core" % Specs2Version % Test
+      // "org.specs2" %%% "specs2-core" % Specs2Version % Test
     ),
     mimaBinaryIssueFilters ++= Seq(
       ProblemFilters.exclude[MissingClassProblem]("cats.effect.kernel.Ref$SyncRef")
@@ -845,8 +846,8 @@ lazy val std = crossProject(JSPlatform, JVMPlatform, NativePlatform)
     name := "cats-effect-std",
     libraryDependencies ++= Seq(
       "org.typelevel" %% "scalac-compat-annotation" % ScalacCompatVersion % CompileTime,
-      "org.scalacheck" %%% "scalacheck" % ScalaCheckVersion % Test,
-      "org.specs2" %%% "specs2-scalacheck" % Specs2Version % Test
+      // "org.scalacheck" %%% "scalacheck" % ScalaCheckVersion % Test,
+      // "org.specs2" %%% "specs2-scalacheck" % Specs2Version % Test
     ),
     mimaBinaryIssueFilters ++= Seq(
       // introduced by #2604, Fix Console on JS
